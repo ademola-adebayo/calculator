@@ -1,5 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.2'
+	id "org.ajoberstar.grgit" version "4.1.1"
 	id 'eclipse' //optional (to generate Eclipse project files)
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
@@ -27,6 +28,16 @@ dependencies {
 	testImplementation("junit:junit:4.13.2")
 	testRuntimeOnly("org.junit.vintage:junit-vintage-engine") {
 		because 'allows JUnit 3 and JUnit 4 tests to run'
+	}
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.2
+			}
+		}
 	}
 }
 
