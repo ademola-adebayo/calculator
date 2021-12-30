@@ -1,7 +1,9 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.2'
+	id 'eclipse' //optional (to generate Eclipse project files)
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.leszko'
@@ -16,8 +18,29 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation(platform('org.junit:junit-bom:5.8.2'))
+	testImplementation("org.junit.jupiter:junit-jupiter") {
+		because 'allows to write and run Jupiter tests'
+	}
+
+	testImplementation("junit:junit:4.13.2")
+	testRuntimeOnly("org.junit.vintage:junit-vintage-engine") {
+		because 'allows JUnit 3 and JUnit 4 tests to run'
+	}
 }
 
 test {
-	useJUnitPlatform()
+	useJUnitPlatform {
+		// includeEngines 'junit-jupiter', 'junit-vintage'
+		// excludeEngines 'custom-engine'
+
+		// includeTags 'fast'
+		excludeTags 'slow'
+	}
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+
+	finalizedBy(jacocoTestReport)
 }
