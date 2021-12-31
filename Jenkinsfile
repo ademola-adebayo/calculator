@@ -1,10 +1,10 @@
 pipeline {
   agent any
+  options {
+     skipDefaultCheckout()
+  }
 
   stages {
-    options {
-      skipDefaultCheckout()
-    }
     stage('Pre') {
      steps {
         script {
