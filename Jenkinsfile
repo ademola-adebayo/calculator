@@ -1,9 +1,6 @@
 pipeline {
   agent any
 
-  options{
-    echo 'OPTIONS goes here'
-  }
   stages {
     options {
       skipDefaultCheckout()
