@@ -1,6 +1,18 @@
 pipeline {
-  agent any
+  agent none
+  tools {
+
+  }
+  options{
+    echo 'OPTIONS goes here'
+  }
   stages {
+    agent any
+
+    options {
+      skipDefaultCheckout()
+    }
+
     stage("Compile") {
       steps {
         sh "./gradlew compileJava --stacktrace"
