@@ -8,8 +8,8 @@ pipeline {
     stage('Pre') {
      steps {
         script {
-          sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
-          sudo yum install git
+          sudo apt-get  install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
+          sudo apt-get install git
         }
      } 
     }
