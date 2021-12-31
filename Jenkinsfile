@@ -1,14 +1,16 @@
 pipeline {
-  agent none
+  agent any
   tools {
-
+    script {
+      sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.9-1.x86_64.rpm
+      sudo yum install git
+      git --version
+    }
   }
   options{
     echo 'OPTIONS goes here'
   }
   stages {
-    agent any
-
     options {
       skipDefaultCheckout()
     }
